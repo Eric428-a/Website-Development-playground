@@ -1,0 +1,81 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { Card } from '@/components/ui/card';
+
+const data = [
+  { name: 'GAN Models', value: 85 },
+  { name: 'Predictive Analytics', value: 70 },
+  { name: 'Anomaly Detection', value: 65 },
+  { name: 'Synthetic Data', value: 90 },
+];
+
+const Home = () => (
+  <div className="p-6 bg-gradient-to-r from-blue-900 to-purple-700 text-white">
+    <h1 className="text-4xl font-bold mb-4">Welcome to Ineteus Data Science</h1>
+    <p className="mb-6">Innovative solutions powered by cutting-edge machine learning models.</p>
+    <ResponsiveContainer width="100%" height={300}>
+      <BarChart data={data}>
+        <XAxis dataKey="name" stroke="#fff" />
+        <YAxis stroke="#fff" />
+        <Tooltip />
+        <Bar dataKey="value" fill="#82ca9d" />
+      </BarChart>
+    </ResponsiveContainer>
+  </div>
+);
+
+const About = () => (
+  <div className="p-6">
+    <h2 className="text-3xl font-semibold mb-4">About Us</h2>
+    <p>Our mission is to advance data science with innovative AI models and impactful analytics solutions.</p>
+  </div>
+);
+
+const Services = () => (
+  <div className="p-6">
+    <h2 className="text-3xl font-semibold mb-4">Our Services</h2>
+    <ul className="list-disc ml-6">
+      <li>GAN-Based Data Generation</li>
+      <li>Predictive Analytics for Financial Markets</li>
+      <li>Anomaly Detection for Fraud Detection</li>
+      <li>Custom Machine Learning Solutions</li>
+    </ul>
+  </div>
+);
+
+const Contact = () => (
+  <div className="p-6">
+    <h2 className="text-3xl font-semibold mb-4">Contact Us</h2>
+    <form className="flex flex-col gap-4">
+      <input type="text" placeholder="Your Name" className="p-2 border border-gray-300 rounded" />
+      <input type="email" placeholder="Your Email" className="p-2 border border-gray-300 rounded" />
+      <textarea placeholder="Your Message" className="p-2 border border-gray-300 rounded"></textarea>
+      <button className="bg-blue-600 text-white p-2 rounded hover:bg-blue-700">Send Message</button>
+    </form>
+  </div>
+);
+
+const App = () => (
+  <Router>
+    <div className="min-h-screen font-sans">
+      <nav className="bg-gray-800 text-white p-4 flex gap-6">
+        <Link to="/" className="hover:text-blue-300">Home</Link>
+        <Link to="/about" className="hover:text-blue-300">About</Link>
+        <Link to="/services" className="hover:text-blue-300">Services</Link>
+        <Link to="/contact" className="hover:text-blue-300">Contact</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+      <footer className="bg-gray-900 text-white p-4 text-center">
+        © 2025 Ineteus Data Science. All rights reserved.
+      </footer>
+    </div>
+  </Router>
+);
+
+export default App;
